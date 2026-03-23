@@ -1,4 +1,5 @@
 from pymongo import MongoClient
 
-CLIENT = MongoClient("mongodb://localhost:27017")
-db = CLIENT["GLH"]
+client = MongoClient("mongodb://localhost:27017")
+db = client["glh_database"]
+users_collection = db["users"]
