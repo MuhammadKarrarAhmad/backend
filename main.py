@@ -1,18 +1,10 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from GLH.router import GLH_router
-from database import db
 
 app = FastAPI()
 
-app.middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # In production, specify allowed origins0)
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app.include_router(GLH_router)
 
 @app.get("/")
-async def root():
+def root():
     return {"message": "GLH API is running!"}
-

@@ -1,50 +1,27 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional 
+from typing import Optional, list 
+from datetime import datetime
 
-class UserAccount(BaseModel):
-    fullName: str
-    email: EmailStr
-    password: str
-    
+#User Account Model 
 
-class ProducerAccount(BaseModel):
-    fullName: str
-    email: EmailStr
-    password: str
-    businessName: str
-    businessAddress: str
+class UserRegistration(BaseModel):
+    fullName : str
+    emailAddress : EmailStr
+    password : str
+    confirmPassword : str
+    userRole : str   # two role buyer or prducer 
+    companyName : Optional[str] = None # Only for producers
+    companyCategory : Optional[str] = None # Only for producers
+    location : str #for both buyer and producer
 
 class UserLogin(BaseModel):
-    email: EmailStr
-    password: str
-
-class UserProfile(BaseModel):
-    fullName: Optional[str] = None
-    email: Optional[EmailStr] = None
-    password: Optional[str] = None
-
-class UserUpdate(BaseModel):
-    fullName: Optional[str] = None
-    email: Optional[EmailStr] = None
-    password: Optional[str] = None
-class UserDelete(BaseModel):
-    email: EmailStr
-    password: str
+    emailAddress : EmailStr
+    password : str
 
 class UserResponse(BaseModel):
-    id: str
-    fullName: str
-    email: EmailStr
-    role: str
-
-class UserLoginResponse(BaseModel):
-    id: str
-    fullName: str
-    email: EmailStr
-    role: str
-
-class UserProfileResponse(BaseModel):
-    id: str
-    fullName: str
-    email: EmailStr
-    role: str
+    userID : str
+    fullName : str  
+    emailAddress : EmailStr
+    userRole : str
+    companyName : Optional[str] = None
+    location : str
